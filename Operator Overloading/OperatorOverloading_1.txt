@@ -1,0 +1,90 @@
+#include <bits/stdc++.h>
+#include <cmath>
+using namespace std;
+
+class Complex{
+    private: 
+        double re, im;
+    public:
+        Complex() : re(0.0), im(0.0) {}
+        Complex(double a) : re(a), im(0) {}
+        Complex(double a, double b) : re(a), im(b) {}
+        Complex(const Complex& obj) : re (obj.re), im (obj.im) {}
+        
+        Complex& operator+=(const Complex& obj) {
+            re += obj.re;
+            im += obj.im;
+            return *this;
+        }
+        Complex& operator-=(const Complex& obj) {
+            re -= obj.re;
+            im -= obj.im;
+            return *this;
+        }
+        Complex& operator*=(const Complex& obj) {
+            double temp = re;
+            re = re * obj.re - im * obj.im;
+            im = temp * obj.im + im * obj.re;
+            return *this;
+        }
+        Complex& operator/=(const Complex& obj) {
+            double temp = re;
+            re = re * obj.re + im * obj.im;
+            im = im * obj.re - temp * obj.im; 
+            double sq = sqroot();
+            re /= sq;
+            im /= sq;
+            return *this;
+        }
+        double sqroot() const {
+            return sqrt(re * re + im * im);
+        }
+        double real() const { return re; }
+        double img() const { return im; }
+};
+    ostream& operator<<(ostream& os, const Complex& obj) {
+        os << obj.real() << " + i(" << obj.img() << ")" << "\n";
+        return os;
+    }
+
+Complex operator+(const Complex& a, const Complex& b) {
+    Complex obj(a);
+    return obj += b;
+}
+Complex operator-(const Complex& a, const Complex& b) {
+    Complex obj(a);
+    return obj -= b;
+}
+Complex operator*(const Complex& a, const Complex& b) {
+    Complex obj(a);
+    return obj *= b;
+}
+Complex operator/(const Complex& a, const Complex& b) {
+    Complex obj(a);
+    return obj /= b;
+}
+Complex operator-(const Complex& a) {
+    return Complex() - a;
+}
+
+bool operator==(const Complex& a, const Complex& b) {
+    return a.real() == b.real() && a.img() == b.img();
+}
+bool operator!=(const Complex& a, const Complex& b) {
+    return !(a==b);
+}
+
+int main() {
+    Complex a {2.3};
+    //Complex b {1/a};
+    //Complex c { a + b * Complex {1, 2.3}};
+    //cout << 1.0 / a.sqroot() << "\n";
+    //cout << a << b << c;
+    
+    Complex d {3, 4};
+    Complex e { 1 / d};
+    cout << d << e ;
+    cout << -e;
+    
+    return 0;
+}
