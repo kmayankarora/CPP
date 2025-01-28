@@ -1,1 +1,2 @@
-### Vectors allocate elements using new but doesn't deallocates them.
+#### Vectors allocate elements using new but doesn't deallocates them.
+#### RAII Rule: Resource acquisition is initialization: it means that constructor will acquires the resources and the resources will be released by destructor; allowing the elimination of `naked new operations` and `naked delete operations`
