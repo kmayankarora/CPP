@@ -1,0 +1,1 @@
+### Vectors allocate elements using new but doesn't deallocates them.
